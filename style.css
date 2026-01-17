@@ -1,67 +1,40 @@
-body {
-    background-color: #121212;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+body { background-color: #121212; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
 
 .main-container {
-    width: 650px;
-    height: 400px;
-    background-color: #222;
-    background-size: cover;
-    background-position: center;
-    border: 12px solid #1a1a1a;
-    border-radius: 20px;
-    position: relative;
-    padding: 20px;
-    transition: background 0.3s;
+    width: 600px; height: 420px; background-color: #222; background-size: cover; background-position: center;
+    border: 12px solid #1a1a1a; border-radius: 25px; position: relative; padding: 20px; transition: 0.4s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 
-.top-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+.top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.bg-group { display: flex; gap: 10px; align-items: center; }
 
-.top-btn { width: 35px; height: 35px; border-radius: 5px; cursor: pointer; border: 2px solid #555; }
-.btn-bg { background: url('https://cdn-icons-png.flaticon.com/512/1040/1040241.png') center/80% no-repeat #eee; }
-.btn-power { background: red; box-shadow: 0 0 5px red; }
-.color-picker { background: #333; color: white; border: 1px solid #555; border-radius: 5px; }
+.top-btn { width: 45px; height: 35px; border-radius: 8px; cursor: pointer; border: 2px solid #444; transition: 0.2s; }
+.btn-gallery { background: #eee url('https://cdn-icons-png.flaticon.com/512/1040/1040241.png') center/70% no-repeat; }
+.btn-power { background: #ff0000; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+
+.install-badge { background: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: bold; animation: pulse 2s infinite; }
+
+.color-picker { background: #333; color: white; border: 1px solid #555; border-radius: 5px; padding: 6px; cursor: pointer; }
 
 .lcd-screen {
-    background: #000033;
-    width: 90%;
-    height: 140px;
-    margin: 10px auto;
-    border: 5px solid #444;
-    padding: 15px;
-    color: #00ffff;
-    font-family: 'Courier New', monospace;
-    box-shadow: inset 0 0 20px #000;
+    background: #00004d; width: 92%; height: 160px; margin: 0 auto; border: 4px solid #333;
+    padding: 15px; color: #00ffff; font-family: 'Courier New', monospace; box-shadow: inset 0 0 30px #000;
 }
 
-.lcd-timer {
-    margin-top: 15px;
-    font-size: 20px;
-    border-top: 1px solid #004444;
-    padding-top: 5px;
-    color: #00ff00;
-}
+.lcd-timer { margin-top: 15px; font-size: 24px; color: #39ff14; border-top: 1px solid #005555; padding-top: 8px; }
 
 .off { visibility: hidden; }
 
-.brand-name { color: white; text-align: center; font-size: 35px; font-weight: bold; font-style: italic; margin: 10px 0; }
-.brand-name span { display: block; font-size: 15px; color: orange; }
+.brand-name { color: #fff; text-align: center; font-size: 34px; font-weight: 900; font-style: italic; margin: 15px 0; letter-spacing: 2px; }
+.brand-name span { display: block; font-size: 14px; color: #ffa500; letter-spacing: 5px; text-transform: uppercase; }
 
-.button-panel { display: flex; justify-content: space-around; padding-top: 10px; }
+.button-panel { display: flex; justify-content: space-around; margin-top: 10px; }
 .round-btn {
-    width: 65px; height: 65px; border-radius: 50%;
-    background: radial-gradient(circle, #ddd, #777);
-    border: 4px solid #333; cursor: pointer;
-    box-shadow: 0 5px 0 #111;
+    width: 65px; height: 65px; border-radius: 50%; background: radial-gradient(circle, #ffffff, #888888);
+    border: 4px solid #222; cursor: pointer; box-shadow: 0 6px 0 #000; transition: 0.1s;
 }
-.round-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #111; }
-.btn-add { background: radial-gradient(circle, #ffd700, #b8860b); display: flex; justify-content: center; align-items: center; }
+.round-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #000; }
+.btn-add { background: radial-gradient(circle, #ffcc00, #997700); display: flex; justify-content: center; align-items: center; }
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
