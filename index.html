@@ -5,25 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WHZ Musical Horn Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
 </head>
 <body>
 
 <div class="main-container" id="app-canvas">
     <div class="top-controls">
-        <label class="top-btn btn-bg" for="bg-upload" title="Ganti Background Galeri"></label>
-        <input type="file" id="bg-upload" accept="image/*" style="display:none" onchange="loadCustomBg(event)">
-        
-        <select class="color-picker" onchange="changeBgColor(this.value)">
-            <option value="">Warna Background</option>
-            <option value="red">Merah</option>
-            <option value="green">Hijau</option>
-            <option value="blue">Biru</option>
-            <option value="yellow">Kuning</option>
-            <option value="purple">Ungu</option>
-            <option value="white">Putih</option>
-        </select>
+        <div class="bg-group">
+            <label class="top-btn btn-gallery" for="bg-upload" title="Pilih Gambar Galeri"></label>
+            <input type="file" id="bg-upload" accept="image/*" style="display:none" onchange="loadCustomBg(event)">
+            
+            <select class="color-picker" onchange="changeBgColor(this.value)">
+                <option value="">Warna Template</option>
+                <option value="red">Merah</option>
+                <option value="green">Hijau</option>
+                <option value="blue">Biru</option>
+                <option value="yellow">Kuning</option>
+                <option value="purple">Ungu</option>
+                <option value="white">Putih</option>
+                <option value="#222">Default (Hitam)</option>
+            </select>
+            
+            <button id="installBtn" class="install-badge" style="display:none">INSTALL APP</button>
+        </div>
 
-        <button class="top-btn btn-power" id="powerBtn" onclick="togglePower()"></button>
+        <button class="top-btn btn-power" id="powerBtn" onclick="togglePower()" title="On/Off"></button>
     </div>
 
     <div class="module-box">
@@ -33,20 +40,20 @@
             <div id="lcd-content" class="off">
                 <p>PLAYLIST: <span id="playlist-stat">KOSONG</span></p>
                 <p>TEMPO: <span id="tempo">125</span> BPM</p>
-                <p>JUDUL: <span id="trackTitle">SILAHKAN ADD LAGU</span></p>
-                <div class="lcd-timer">DURASI: <span id="duration">00:00</span></div>
+                <p>JUDUL: <span id="trackTitle">UNGGAH LAGU...</span></p>
+                <div class="lcd-timer">TIME: <span id="duration">00:00</span></div>
             </div>
         </div>
 
         <div class="brand-name">MASTER<span>MUSICAL HORN</span></div>
 
         <div class="button-panel">
-            <button class="round-btn" onclick="prevTrack()" title="Prev"></button>
-            <button class="round-btn" onclick="nextTrack()" title="Next"></button>
+            <button class="round-btn" onclick="prevTrack()" title="Lagu Sebelumnya"></button>
+            <button class="round-btn" onclick="nextTrack()" title="Lagu Berikutnya"></button>
             <button class="round-btn" onclick="playTrack()" title="Play"></button>
             <button class="round-btn" onclick="pauseTrack()" title="Pause"></button>
             
-            <label class="round-btn btn-add" for="music-upload" title="Tambah Lagu"></label>
+            <label class="round-btn btn-add" for="music-upload" title="Tambah Lagu MP3"></label>
             <input type="file" id="music-upload" accept="audio/mp3" multiple style="display:none" onchange="addMusic(event)">
         </div>
     </div>
