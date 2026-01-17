@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHZ Musical Horn Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-container" id="bg-container">
+    <button class="top-btn btn-bg" onclick="changeBackground()" title="Ganti Background"></button>
+    <button class="top-btn btn-power" id="powerBtn" onclick="togglePower()" title="On/Off"></button>
+
+    <div class="module-box">
+        <div class="header-text">
+            <span>36 - 42 NOT++</span>
+            <small>@ whz musical project</small>
+        </div>
+
+        <div class="lcd-screen">
+            <div id="lcd-content" class="off">
+                <p>IP. 11, 12, 13, 14</p>
+                <p>TEMPO: <span id="tempo">125</span> BPM</p>
+                <p>NOMER: <span id="trackNum">34</span>/50 NADA</p>
+                <p>JUDUL: <span id="trackTitle">JANDA BODONG 18</span></p>
+                <p>DURASI: <span id="duration">00:00</span></p>
+            </div>
+        </div>
+
+        <div class="brand-name">MASTER<span>MUSICAL HORN</span></div>
+
+        <div class="button-panel">
+            <button class="round-btn" onclick="prevTrack()" title="Prev"></button>
+            <button class="round-btn" onclick="nextTrack()" title="Next"></button>
+            <button class="round-btn" onclick="playTrack()" title="Play"></button>
+            <button class="round-btn" onclick="pauseTrack()" title="Pause"></button>
+            <button class="round-btn" onclick="addTrack()" title="Add"></button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
