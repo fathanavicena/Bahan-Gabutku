@@ -1,77 +1,87 @@
 let isOn = false;
-let timer;
-let seconds = 0;
-
-const songs = [
-    { title: "JANDA BODONG 18", tempo: 125 },
-    { title: "TELOLET BASURI V3", tempo: 130 },
-    { title: "MELODI WHZ 01", tempo: 118 }
-];
-let currentSongIndex = 0;
+let playlist = [];
+let currentIdx = 0;
+const audio = document.getElementById('audio-player');
+const lcd = document.getElementById('lcd-content');
+const timerDisplay = document.getElementById('duration');
 
 function togglePower() {
     isOn = !isOn;
-    const lcd = document.getElementById('lcd-content');
     const btn = document.getElementById('powerBtn');
-    
     if (isOn) {
         lcd.classList.remove('off');
         btn.style.background = "#00ff00";
-        btn.style.boxShadow = "0 0 10px #00ff00";
+        btn.style.boxShadow = "0 0 15px #00ff00";
+        updateLCD();
     } else {
         lcd.classList.add('off');
         btn.style.background = "red";
         btn.style.boxShadow = "0 0 5px red";
-        stopTimer();
+        audio.pause();
     }
 }
 
+function addMusic(event) {
+    const files = event.target.files;
+    for (let file of files) {
+        const url = URL.createObjectURL(file);
+        playlist.push({ title: file.name, url: url });
+    }
+    document.getElementById('playlist-stat').innerText = `${playlist.length} LAGU`;
+    if(isOn) updateLCD();
+}
+
 function updateLCD() {
-    if(!isOn) return;
-    document.getElementById('trackTitle').innerText = songs[currentSongIndex].title;
-    document.getElementById('tempo').innerText = songs[currentSongIndex].tempo;
-    document.getElementById('trackNum').innerText = (currentSongIndex + 1);
-}
-
-function prevTrack() {
-    if(!isOn) return;
-    currentSongIndex = (currentSongIndex > 0) ? currentSongIndex - 1 : songs.length - 1;
-    updateLCD();
-}
-
-function nextTrack() {
-    if(!isOn) return;
-    currentSongIndex = (currentSongIndex < songs.length - 1) ? currentSongIndex + 1 : 0;
-    updateLCD();
+    if (!isOn) return;
+    if (playlist.length > 0) {
+        document.getElementById('trackTitle').innerText = playlist[currentIdx].title;
+    }
 }
 
 function playTrack() {
-    if(!isOn) return;
-    stopTimer();
-    timer = setInterval(() => {
-        seconds++;
-        let mins = Math.floor(seconds / 60).toString().padStart(2, '0');
-        let secs = (seconds % 60).toString().padStart(2, '0');
-        document.getElementById('duration').innerText = `${mins}:${secs}`;
-    }, 1000);
+    if (!isOn || playlist.length === 0) return;
+    if (audio.src !== playlist[currentIdx].url) {
+        audio.src = playlist[currentIdx].url;
+    }
+    audio.play();
 }
 
-function pauseTrack() {
-    stopTimer();
+function pauseTrack() { audio.pause(); }
+
+function nextTrack() {
+    if (!isOn || playlist.length === 0) return;
+    currentIdx = (currentIdx + 1) % playlist.length;
+    audio.src = playlist[currentIdx].url;
+    updateLCD();
+    audio.play();
 }
 
-function stopTimer() {
-    clearInterval(timer);
+function prevTrack() {
+    if (!isOn || playlist.length === 0) return;
+    currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+    audio.src = playlist[currentIdx].url;
+    updateLCD();
+    audio.play();
 }
 
-function addTrack() {
-    if(!isOn) return;
-    alert("Fitur Tambah Lagu Aktif!");
+// Update Durasi di dalam LCD
+audio.ontimeupdate = () => {
+    let mins = Math.floor(audio.currentTime / 60).toString().padStart(2, '0');
+    let secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+    timerDisplay.innerText = `${mins}:${secs}`;
+};
+
+// Fungsi Ganti Background
+function changeBgColor(color) {
+    const canvas = document.getElementById('app-canvas');
+    canvas.style.backgroundImage = 'none';
+    canvas.style.backgroundColor = color;
 }
 
-function changeBackground() {
-    const colors = ['#333', '#1e3c72', '#2c3e50', '#000'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.getElementById('bg-container').style.backgroundColor = randomColor;
-    document.getElementById('bg-container').style.backgroundImage = 'none';
+function loadCustomBg(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const url = URL.createObjectURL(file);
+        document.getElementById('app-canvas').style.backgroundImage = `url(${url})`;
+    }
 }
