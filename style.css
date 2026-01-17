@@ -1,0 +1,88 @@
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    width: 600px;
+    height: 350px;
+    background: #333 url('https://via.placeholder.com/600x350/222/555?text=Background+Pattern') center/cover;
+    border: 10px solid #111;
+    border-radius: 15px;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Tombol Pojok Atas */
+.top-btn {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.btn-bg { top: 10px; left: 10px; background: #555; border: 1px solid #777; }
+.btn-power { top: 10px; right: 10px; background: red; box-shadow: 0 0 5px red; }
+
+.header-text {
+    color: white;
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+/* Tampilan LCD */
+.lcd-screen {
+    background: #00008b;
+    width: 80%;
+    margin: 0 auto;
+    height: 120px;
+    border: 4px solid #555;
+    padding: 10px;
+    color: #87CEEB;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+.off { display: none; }
+
+/* Nama Brand */
+.brand-name {
+    color: #ccc;
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
+    margin: 15px 0;
+    font-style: italic;
+}
+.brand-name span { display: block; font-size: 14px; color: orange; margin-top: -5px; }
+
+/* Tombol Bulat */
+.button-panel {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.round-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ccc, #666);
+    border: 3px solid #333;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #222;
+}
+
+.round-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #222;
+}
